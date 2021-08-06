@@ -63,7 +63,7 @@ settings.stepResolution = PRODRIVER_STEP_RESOLUTION_1_1; // IC default on bootup
 
   //statuses/flags
   settings.enableStatus = PRODRIVER_STATUS_DISABLED;  
-  settings.standbyStatus = PRODRIVER_STATUS_STANDBY_ON;
+  settings.standbyStatus = PRODRIVER_STATUS_STANDBY_OFF;
   settings.errorFlag = false; // false = no error
 }
 // *****************************************************************************
@@ -84,7 +84,7 @@ void Pin_SetUp_PortB_Driver ( void )
   // OUTPUT, HIGH = not in standby
   TRIS_PRODRIVER_DEFAULT_PIN_STBY   = OUTPUT;
   PORT_PRODRIVER_DEFAULT_PIN_STBY   = LOW;// hold in standby, until we're ready to go
-  settings.standbyStatus = PRODRIVER_STATUS_STANDBY_ON;
+  settings.standbyStatus = PRODRIVER_STATUS_STANDBY_OFF;
   // error is active low 
   // This will always be an input pin (on your microcontroller)
   // note, this pin on the IC has a dual purpose (both EN and ERR).
@@ -101,7 +101,7 @@ void Pin_SetUp_PortB_Driver ( void )
   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = LOW;
  
  }
-bool controlModeSelect( )
+bool controlModeSelect()
 {
   // set mode pins according to desired mode
   switch (settings.controlMode)
@@ -115,6 +115,7 @@ bool controlModeSelect( )
    break;
 
   case PRODRIVER_MODE_CLOCKIN:
+  
     // set mode pins as needed
     // note, when you set controlmode to CLOCKIN,
     // you are also setting the step resolution, which can
@@ -124,64 +125,151 @@ bool controlModeSelect( )
     // these will be used to set each mode pin high/low
 
     // mode0Pin
-    if(settings.stepResolutionMode== 8)
-    {
-      PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = HIGH; // let on-board external pullup to 3.3V pull this pin HIGH
-    }
-    else{
-      PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = LOW;
-    }
-
-    // mode1Pin
-    if(settings.stepResolutionMode== 1)
-    {
-      PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = HIGH; // let on-board external pullup to 3.3V pull this pin HIGH
-    }
-    else{
-      PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = LOW;
-    }
-
-    // mode2Pin
-    if(settings.stepResolutionMode== 2)
-    {
-      PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = HIGH; // let on-board external pullup to 3.3V pull this pin HIGH
-    }
-    else{
-      PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = LOW;
-    }
-
-    // mode3Pin
-    if(settings.stepResolutionMode==3)
-    {
-      PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = HIGH; // let on-board external pullup to 3.3V pull this pin HIGH
-    }
-    else{
-      PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = LOW;
-    }
-    PORT_PRODRIVER_DEFAULT_PIN_STBY=HIGH;
-    break;
-
-  default:
-    break;
-
-  }
+  switch (settings.stepResolutionMode)
+      {
+case PRODRIVER_STEP_RESOLUTION_VARIABLE_1_2:
+    
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = LOW; 
   
-  // wait TmodeSU (mode setting setup time) minimum 1 microsecond
+   break;
+   
+ case PRODRIVER_STEP_RESOLUTION_VARIABLE_1_4:
+
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = LOW;  
+   
+   break;
+
+case PRODRIVER_STEP_RESOLUTION_VARIABLE_1_8:
+
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = LOW;  
+
+   break;
+
+case PRODRIVER_STEP_RESOLUTION_VARIABLE_1_16:
+
+  PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = LOW;  
+
+   break;   
+
+case PRODRIVER_STEP_RESOLUTION_VARIABLE_1_32:
+
+          PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = LOW; 
+
+   break;
+   
+casePRODRIVER_STEP_RESOLUTION_VARIABLE_1_64:
+
+          PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = LOW;
+
+   break;
+case PRODRIVER_STEP_RESOLUTION_VARIABLE_1_128:
+
+          PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = LOW;
+
+   break;
+case PRODRIVER_STEP_RESOLUTION_FIXED_FULL:
+
+          PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = HIGH;  
+
+   break;
+case PRODRIVER_STEP_RESOLUTION_FIXED_1_2:
+
+          PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = HIGH;  
+
+   break;
+casePRODRIVER_STEP_RESOLUTION_FIXED_1_4:
+
+          PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = HIGH;  
+
+   break;
+case PRODRIVER_STEP_RESOLUTION_FIXED_1_8:
+
+          PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = HIGH; 
+
+   break;
+case PRODRIVER_STEP_RESOLUTION_FIXED_1_16:
+
+          PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = HIGH;
+
+   break;
+case PRODRIVER_STEP_RESOLUTION_FIXED_1_32:
+
+          PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = HIGH;
+
+   break;
+case PRODRIVER_STEP_RESOLUTION_FIXED_1_64:
+
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = LOW;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = HIGH;
+
+   break;
+case PRODRIVER_STEP_RESOLUTION_FIXED_1_128:
+
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_0 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_1 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_2 = HIGH;
+   PORT_PRODRIVER_DEFAULT_PIN_MODE_3 = HIGH;  
+
+      break;
+}
+  //Con el paso a alto STBY se configura el modo de control del 78HC
+   // wait TmodeSU (mode setting setup time) minimum 1 microsecond
  __delay_us(3);
   
-
   // release standby (write it HIGH)
-  PORT_PRODRIVER_DEFAULT_PIN_EN = HIGH; // update setting to check as needed
-
+  PORT_PRODRIVER_DEFAULT_PIN_STBY = PRODRIVER_STATUS_STANDBY_ON; 
   // wait TmodeHO (mode setting Data hold time) minimum 100 microseconds
   __delay_us(100);
-
-  //return errorStat();
+  settings.standbyStatus=HIGH;// update setting to check as needed
+  
+       
+  
+    }
+   //return errorStat();
   return errorStat();
+
 }
-// enable ( void )
-// sets the enable pin to HIGH
-// but only if we need to (i.e. we are currently disabled)
 bool TC78H_enable_pin(bool enable_disable)
 {
     if (enable_disable==true) 
@@ -254,7 +342,7 @@ bool step( uint16_t steps, bool direction, uint8_t clockDelay)
   return errorStat();
 }
 
- setupMovimientoContinuo( )
+bool setupMovimientoContinuo( )
 {
    
    TC78H_enable_pin(true);

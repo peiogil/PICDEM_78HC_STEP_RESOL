@@ -194,26 +194,17 @@ void APP_DeviceCustomHIDTasks()
                 }
                 break;
               
-            case COMMAND_A_CONTAR_TIMER0:   //Cuando recibe una orden del PC cuenta un tiempo programado en el TIMER0.
-                                        //Mientras cuenta se lee 1 en el ordenador.
-                                        //Cuando acaba la cuenta el TIMER0 genera una interrupción manda 0 y queda preparado para la siguiente orden
-                {
-                    
-                timerCounter=0;
-                TMR0H=0X5E;
-                TMR0L=0xF8;
-                T0CONbits.TMR0ON = 1; //Comienza a contar 
-               }
-            break;
-            case COMMAND_MOVIMIENTO_CONTINUO:
+               case COMMAND_MOVIMIENTO_CONTINUO:
             {
-                
                 settings.byte_TMROL=ReceivedDataBuffer[1];
                 settings.byte_TMROH=ReceivedDataBuffer[2];
                if (ReceivedDataBuffer[3]== 1)
                    settings.direction=true;
                else
                    settings.direction=false;
+                settings.controlMode=ReceivedDataBuffer[4];
+                settings.controlMode=ReceivedDataBuffer[5];
+                controlModeSelect();
                 setupMovimientoContinuo();
                 /*Check to make sure the endpoint/buffer is free before we modify the contents
                 if(!HIDTxHandleBusy(USBInHandle))
@@ -259,6 +250,10 @@ void APP_DeviceCustomHIDTasks()
             USBInHandle = HIDTxPacket(CUSTOM_DEVICE_HID_EP, (uint8_t*)&ToSendDataBuffer[0],64);
                 }
                 }
+                break;
+            case COMMAND_CONTROL_MODE_SELECT:
+            {
+            }
                 break;
             case COMMAND_STOP_MOVIMIENTO_CONTINUO:
                 {

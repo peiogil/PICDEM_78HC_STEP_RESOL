@@ -42,7 +42,7 @@
 #define OUTPUT 0
 #define HIGH   1
 #define LOW    0
-
+//CLK mode Step Resolution Select Function pg. 8
 #define PRODRIVER_STEP_RESOLUTION_VARIABLE_1_2 1
 #define PRODRIVER_STEP_RESOLUTION_VARIABLE_1_4 2
 #define PRODRIVER_STEP_RESOLUTION_VARIABLE_1_8 3
@@ -61,6 +61,7 @@
 
 // step resolution options
 // note, these are limited by which mode you choose.
+// no usada 
 #define PRODRIVER_STEP_RESOLUTION_1_1 1
 #define PRODRIVER_STEP_RESOLUTION_1_2 2
 #define PRODRIVER_STEP_RESOLUTION_1_4 4
@@ -133,11 +134,11 @@ void IniSettingsDefault( void );
   bool begin( void ); // Call to apply PRODRIVERSettings and returns ERR stat
   bool errorStat( void );
   bool step( uint16_t steps, bool direction, uint8_t clockDelay ); // returns ERR stat
-  setupMovimientoContinuo( void );
+  bool setupMovimientoContinuo( void );
   bool stopMovimientoContinuo( void );
   bool stepSerial( uint16_t steps, bool direction , uint8_t stepDelay ); // only 1:1 stepping, (no microstep support)
   bool changeStepResolution( uint8_t resolution ); // only works with "variable" step modes
-  bool controlModeSelect( void );
+  bool controlModeSelect(void);
   bool TC78H_enable_pin( bool enable_disable );
   bool disable( void );
   bool sendSerialCommand( void );

@@ -70,9 +70,10 @@ enum
     COMMAND_GET_BUTTON_STATUS_S2 = 0x81,
     COMMAND_GET_BUTTON_STATUS_S3 =0X82, //creado por mi para manejar S3  
     COMMAND_TOGGLE_LED_D4 = 0x83,  //creado por mi para manejar Led D4 
-    COMMAND_A_CONTAR_TIMER0=0x84, 
+    COMMAND_CONTROL_MODE_SELECT=0x84, //creado por mi para seleccionar el modo del paso=0x84, 
     COMMAND_STOP_MOVIMIENTO_CONTINUO=0x85, 
     COMMAND_MOVIMIENTO_CONTINUO=0x86,//creado por mi para mover el step motor 
     COMMAND_READ_POTENTIOMETER = 0x37,
     COMMAND_READ_ERROR_STATUS =0X38 //creado por mi para mostrar error
+            
 } CUSTOM_HID_DEMO_COMMANDS;
