@@ -260,7 +260,7 @@ case PRODRIVER_STEP_RESOLUTION_FIXED_1_128:
   // release standby (write it HIGH)
   PORT_PRODRIVER_DEFAULT_PIN_STBY = PRODRIVER_STATUS_STANDBY_ON; 
   // wait TmodeHO (mode setting Data hold time) minimum 100 microseconds
-  __delay_us(100);
+  __delay_us(110);
   settings.standbyStatus=HIGH;// update setting to check as needed
  
        
