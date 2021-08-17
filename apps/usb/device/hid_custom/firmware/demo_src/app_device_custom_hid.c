@@ -203,7 +203,7 @@ void APP_DeviceCustomHIDTasks()
                else
                    settings.direction=false;
                 settings.controlMode=ReceivedDataBuffer[4];
-                settings.controlMode=ReceivedDataBuffer[5];
+                settings.stepResolutionMode=ReceivedDataBuffer[5];
                 controlModeSelect();
                 setupMovimientoContinuo();
                 /*Check to make sure the endpoint/buffer is free before we modify the contents

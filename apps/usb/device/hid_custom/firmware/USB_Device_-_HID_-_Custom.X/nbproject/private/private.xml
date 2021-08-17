@@ -4,16 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/app_device_custom_hid.c</file>
-            <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/app_led_usb_status.c</file>
             <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/USB_Device_-_HID_-_Custom.X/timers.c</file>
-            <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/USB_Device_-_HID_-_Custom.X/nbproject/Makefile-PICDEM_FSUSB.mk</file>
+            <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/fixed_address_memory.h</file>
             <file>file:/C:/microchip/mla/v2018_11_26/framework/usb/src/usb_device.c</file>
             <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/isr_test.c</file>
-            <file>file:/C:/microchip/mla/v2018_11_26/bsp/picdem_fs_usb/power.h</file>
             <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/io_mapping.h</file>
             <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/SparkFun_ProDriver_TC78H670FTG_Library.h</file>
-            <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/main.c</file>
             <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/app_device_custom_hid.h</file>
+            <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/app_led_usb_status.c</file>
+            <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/USB_Device_-_HID_-_Custom.X/nbproject/Makefile-PICDEM_FSUSB.mk</file>
+            <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/timers.h</file>
+            <file>file:/C:/microchip/mla/v2018_11_26/bsp/picdem_fs_usb/power.h</file>
+            <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/main.c</file>
+            <file>file:/C:/microchip/mla/v2018_11_26/apps/usb/device/hid_custom/firmware/demo_src/app_led_usb_status.h</file>
             <file>file:/C:/microchip/mla/v2018_11_26/bsp/picdem_fs_usb/SparkFun_ProDriver_TC78H670FTG.c</file>
         </group>
     </open-files>

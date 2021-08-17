@@ -42,7 +42,7 @@
 #define OUTPUT 0
 #define HIGH   1
 #define LOW    0
-//CLK mode Step Resolution Select Function pg. 8
+//CLK mode Step Resolution Select Function pg. 8 of D.S.
 #define PRODRIVER_STEP_RESOLUTION_VARIABLE_1_2 1
 #define PRODRIVER_STEP_RESOLUTION_VARIABLE_1_4 2
 #define PRODRIVER_STEP_RESOLUTION_VARIABLE_1_8 3

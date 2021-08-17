@@ -40,7 +40,7 @@ MAIN_RETURN main(void)
 //Select default 18f4550 pin modes for hardware connections
 // *****************************************************************************
     Pin_SetUp_PortB_Driver ();
-    //controlModeSelect(); se le llama desde el PC
+    //controlModeSelect(); //se le llama desde el PC ahora para hacer pruebas
     while(1)
     {
         SYSTEM_Tasks();
